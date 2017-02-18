@@ -9,7 +9,7 @@ public class Main {
         RSA eve   = new RSA();
 
         // alice wants to send this message to bob
-        String messageFromAliceToBob = "The quick brown fox jump over the lazy dog. af;sfliij;aeoirlfj;eraoilskgdgnlaurkj;gshnlaeriugkajnsdlkgjahfhneilufukwejfilukj";//"Ya like jazz?";
+        String messageFromAliceToBob = "Ya like jazz?";
 
         // alice then uses bob's public key to encrypt the message
         String encryptedMessage = RSA.encryptMessage(messageFromAliceToBob, bob.publicKey);
