@@ -1,5 +1,4 @@
-import org.apache.commons.codec.binary.Base64;
-
+import java.util.Base64;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
@@ -129,7 +128,7 @@ public class RSA {
         BigInteger encryptedNumber = encodedNumber.modPow(publicKey.e, publicKey.n);
 
         // Base 64 encode the encrypted message, so it will be represented with less characters
-        String encryptedString = new String(Base64.encodeBase64(encryptedNumber.toByteArray()));
+        String encryptedString = new String(Base64.getEncoder().encode(encryptedNumber.toByteArray()));
 
         return encryptedString;
     }
@@ -141,7 +140,7 @@ public class RSA {
      */
     public String decryptMessage(String message) {
         // get the decimal representation of the encrypted message
-        BigInteger encryptedNumber = new BigInteger(Base64.decodeBase64(message.getBytes()));
+        BigInteger encryptedNumber = new BigInteger(Base64.getDecoder().decode(message.getBytes()));
 
         // decrypt the message: c^d ≡ m (mod n), where m is the original message
         BigInteger decryptedNumber = encryptedNumber.modPow(privateKey.d, privateKey.n);
